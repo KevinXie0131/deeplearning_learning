@@ -13,7 +13,7 @@ from sklearn.metrics import mean_squared_error  # 均方误差损失函数
 5. 预测结果，计算误差
 '''
 
-plt.rcParams['font.sans-serif']=['KaiTi']
+plt.rcParams['font.sans-serif']=['Microsoft YaHei']
 plt.rcParams['axes.unicode_minus']=False
 
 # 1. 生成数据
@@ -69,7 +69,7 @@ test_loss2 = mean_squared_error(testY, y_pred2)
 
 # 画出拟合曲线，并写出训练误差和测试误差
 ax[0,1].plot(X, lasso.predict(poly20.fit_transform(X)), 'r')
-ax[0,1].text(-3, 1, f"测试误差：{test_loss2:.4f}")
+ax[0,1].text(-3, 1, f"L1正则 测试误差：{test_loss2:.4f}")
 # 画所有系数的直方图
 ax[1,1].bar(np.arange(21), lasso.coef_.reshape(-1))
 
@@ -87,7 +87,7 @@ test_loss3 = mean_squared_error(testY, y_pred3)
 
 # 画出拟合曲线，并写出训练误差和测试误差
 ax[0,2].plot(X, ridge.predict(poly20.fit_transform(X)), 'r')
-ax[0,2].text(-3, 1, f"测试误差：{test_loss3:.4f}")
+ax[0,2].text(-3, 1, f"L2正则 测试误差：{test_loss3:.4f}")
 # 画所有系数的直方图
 ax[1,2].bar(np.arange(21), ridge.coef_.reshape(-1))
 

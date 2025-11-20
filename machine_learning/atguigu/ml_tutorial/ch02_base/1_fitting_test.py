@@ -13,7 +13,7 @@ from sklearn.metrics import mean_squared_error  # 均方误差损失函数
 5. 预测结果，计算误差
 '''
 
-plt.rcParams['font.sans-serif']=['KaiTi']
+plt.rcParams['font.sans-serif']=['Microsoft YaHei']
 plt.rcParams['axes.unicode_minus']=False
 
 # 1. 生成数据
@@ -68,8 +68,8 @@ print(x_test2.shape)
 model.fit(x_train2, trainY)
 #
 # # 打印查看模型参数
-# print(model.coef_)
-# print(model.intercept_)
+print(model.coef_)
+print(model.intercept_)
 #
 # 5. 预测结果，计算误差
 y_pred2 = model.predict(x_test2)
