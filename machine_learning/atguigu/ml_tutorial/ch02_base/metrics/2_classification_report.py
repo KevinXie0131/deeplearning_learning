@@ -1,6 +1,6 @@
 from sklearn.datasets import make_classification    # 自动生成分类数据集
 from sklearn.model_selection import train_test_split
-from sklearn.linear_model import LogisticRegression # 逻辑回归分类模型
+from sklearn.linear_model import LogisticRegression, LinearRegression# 逻辑回归分类模型
 from sklearn.metrics import classification_report   # 生成分类评估报告
 
 # 1. 生成数据
@@ -19,6 +19,7 @@ model.fit(X_train, y_train)
 
 # 5. 预测（测试）
 y_pred = model.predict(X_test)
+print(y_pred)
 
 # 6. 生成分类评估报告
 report = classification_report(y_test, y_pred)
