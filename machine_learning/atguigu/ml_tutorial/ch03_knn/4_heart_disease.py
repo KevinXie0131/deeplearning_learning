@@ -45,7 +45,9 @@ X_train = columnTransformer.fit_transform(X_train)
 X_test = columnTransformer.transform(X_test)
 
 print(X_train.shape)
+print(X_train[0])
 print(X_test.shape)
+print(X_test[0])
 
 # # 4. 创建模型
 # knn = KNeighborsClassifier(n_neighbors=3)
