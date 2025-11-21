@@ -9,6 +9,8 @@ from sklearn.metrics import mean_squared_error  # 均方误差损失函数
 dataset = pd.read_csv("../data/advertising.csv")
 
 dataset.dropna(inplace=True)
+print(dataset.columns)
+print(dataset.columns[0])
 dataset.drop(columns=dataset.columns[0], axis=1, inplace=True)
 
 dataset.info()
@@ -18,13 +20,15 @@ print(dataset.head())
 X = dataset.drop(columns='Sales', axis=1)
 y = dataset['Sales']
 X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.3, random_state=42)
-
+print('X_train', type(X_train))
+print('y_train', type(y_train))
 print(X_train.shape, X_test.shape, y_train.shape, y_test.shape)
 
 # 3. 特征工程：标准化
 scaler = StandardScaler()
 X_train = scaler.fit_transform(X_train)
 X_test = scaler.transform(X_test)
+# print(X_train)
 
 # 4. 创建模型并训练
 # 4.1 正规方程法

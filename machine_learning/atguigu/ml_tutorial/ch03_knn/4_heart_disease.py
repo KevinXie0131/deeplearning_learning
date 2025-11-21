@@ -79,6 +79,8 @@ grid_search_cv = GridSearchCV(estimator=knn, param_grid=param_grid, cv=10)
 grid_search_cv.fit(X_train, y_train)
 
 # 打印模型评估结果
+# print(grid_search_cv.cv_results_)
+print('----------------------------------')
 results = pd.DataFrame(grid_search_cv.cv_results_).to_string()
 print(results)
 # 直接获取最佳模型和最佳得分
