@@ -9,11 +9,12 @@ print(s1[1])
 print(s1.iloc[1])
 s1[1] = 100
 print(s1)
+print(type(s1.values), s1.values, s1.dtype)
 
 # 2. 创建Series对象, 采用: 自定义索引.
 s2 = pd.Series([1, 2, 3, 4, 5], index=['a', 'b', 'c', 'd', 'e'])
 print(s2)
-print(s2['c'])
+print(s2.c, ' = ', s2['c'])
 print(s2.iloc[2:5])
 
 # 3. 使用字典, 元组创建Series对象.
@@ -38,18 +39,19 @@ print(s6)
 
 # 2. 获取Series对象的 索引列(的值)
 print(s6.index)     # Index(['A', 'B', 'C', 'D', 'E', 'F'], dtype='object')
-
 # 3. 获取Series对象的 值列(的值)
 print(s6.values)
-
 # 4. Series支持根据 索引 获取元素, 即: Series对象[索引值]
 print(s6['D'])  # 3
-
 # 5. 根据索引, 修改Series对象的 元素值
 s6['D'] = 99
 print(s6)
 
 # 3. DataFrame对象入门
+# DataFrame是一个类似于二维数组或表格(如excel)的对象，既有行索引，又有列索引
+# 行索引，表明不同行，横向索引，叫index，0轴，axis=0
+# 列索引，表名不同列，纵向索引，叫columns，1轴，axis=1
+
 # 3.1 创建DataFrame对象
 # 场景1: 通过 字典 + 列表的方式实现.
 # 1. 准备数据集, 每个键值对 = 1列数据
@@ -71,6 +73,7 @@ info = [
 ]
 # 2. 把上述的数据集, 封装成DataFrame对象.
 df2 = pd.DataFrame(data=info, columns=['姓名', '性别', '年龄'])
+df2 = pd.DataFrame(data=info, columns=['姓名', '性别', '年龄'], index = ['row_1','row_2','row_3']) # 手动指定索引
 print(df2) # 打印结果.
 
 # 场景3: 通过 numpy的ndarray -> pandas DataFrame 的方式实现.
@@ -146,6 +149,16 @@ score_df2 = score_df.set_index(['语文', '英语'])
 print(score_df2)
 
 # 3.5 Pandas的数据类型介绍
+# Pandas数据类型	说明	        对应的Python类型
+# Object	        字符串类型	    string
+# int	            整数类型	    int
+# float	            浮点数类型	    float
+# datetime	        日期时间类型	    datetime包中的datetime类型
+# timedelta	        时间差类型	    datetime包中的timedelta类型
+# category	        分类类型	    无原生类型，可以自定义
+# bool	            布尔类型	    bool（True,False）
+# nan	            空值类型	    None
+
 # Pandas中的数据类型几乎和Python中是一致的, 只不过有几个不太一样.
 # 例如: Python: str -> Pandas: object,  Python: None -> Pandas: nan,NAN,NaN,
 # Pandas还支持category分类类型, 针对于分类数据操作更快, 更节省内存.
@@ -159,6 +172,10 @@ print(df)
 
 # 2. 查看df对象的 详细信息
 print(df.info())
+
+# 创建一个datetime类型的Series
+dates = pd.to_datetime(['2024-09-01', '2024-09-02', '2024-09-03'])
+print(dates)
 
 # 3. 演示 日期类型 datetime
 df2 = pd.DataFrame(['2025-03-29', '2025-03-30', '2025-03-31'], dtype='datetime64[ns]')
