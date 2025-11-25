@@ -7,6 +7,8 @@ s1 = pd.Series([1,2,3,4,5])
 print(s1)
 print(s1[1])
 print(s1.iloc[1])
+s1[1] = 100
+print(s1)
 
 # 2. 创建Series对象, 采用: 自定义索引.
 s2 = pd.Series([1, 2, 3, 4, 5], index=['a', 'b', 'c', 'd', 'e'])
