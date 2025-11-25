@@ -117,6 +117,7 @@ print(np.multiply(arr10, arr11))
 # 矩阵点积
 arr12 = np.arange(10).reshape(5, 2)
 print(np.dot(arr10, arr12))
+print(arr10 @ arr12) # 效果同上
 
 # 逻辑运算
 score = np.random.randint(40, 100, (2, 3))
