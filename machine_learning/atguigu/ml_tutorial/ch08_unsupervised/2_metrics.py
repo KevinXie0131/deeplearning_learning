@@ -7,7 +7,7 @@ from sklearn.cluster import KMeans
 from sklearn.datasets import make_blobs
 from sklearn.metrics import silhouette_score, calinski_harabasz_score
 
-plt.rcParams['font.sans-serif'] = ['KaiTi']
+plt.rcParams['font.sans-serif'] = ['Microsoft YaHei']
 plt.rcParams['axes.unicode_minus'] = False
 
 # 1. 生成数据

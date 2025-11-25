@@ -6,7 +6,7 @@ os.environ['OMP_NUM_THREADS'] = '2'
 from sklearn.cluster import KMeans
 from sklearn.datasets import make_blobs
 
-plt.rcParams['font.sans-serif'] = ['KaiTi']
+plt.rcParams['font.sans-serif'] = ['Microsoft YaHei']
 plt.rcParams['axes.unicode_minus'] = False
 
 # 1. 生成数据
