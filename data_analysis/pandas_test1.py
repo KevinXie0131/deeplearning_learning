@@ -222,6 +222,7 @@ print(df.loc['2018-02-27':'2018-02-14', ['open', 'high']])
 # 场景3: 结合 iloc 根据: 行号 和 列索引 来获取元素.
 print(df.iloc[0:5, 0:2])   # 获取多条数据
 print(df.iloc[0:1, :])   # 获取多条数据
+print(df.iloc[:3, :5]) # 获取前3天数据,前5列的结果
 
 # 4.3 赋值操作
 # 2. 赋值操作
@@ -250,6 +251,7 @@ s0 = df['close']
 # print(s0.values)
 # print(s0.index)
 s1 = df.close.sort_index(ascending=True)    # 索引升序
+s1 = df['close'].sort_index(ascending=True)
 # print(s1)
 s2 = df.close.sort_values(ascending=False)    # 价格降序
 # print(s2)
@@ -289,4 +291,33 @@ df12 = df[df.close.isin([33.83, 33.34])]
 
 # df13 = df.query('close == 33.83 | close == 33.34')
 df13 = df.query('close in [33.83, 33.34]')
-print(df13)
+# print(df13)
+
+# 使用统计函数：0 代表列求结果， 1 代表行求统计结果
+# print(df.max(0))
+# print(df.var(0)) # 方差
+# print(df.std(0)) # 标准差
+# print(df.median()) # 中位数
+# print(df.idxmax(axis=0)) # 求出最大值的位置
+# print(df.idxmin(axis=0)) # 求出最小值的位置
+
+# 累计统计函数
+# cumsum	计算前1/2/3/…/n个数的和
+# 按照时间的从前往后来进行累计
+# 排序之后，进行累计求和
+data = df.sort_index()
+# 对p_change进行求和
+stock_rise = data['p_change']
+# plot方法集成了前面直方图、条形图、饼图、折线图
+# print(stock_rise.cumsum())
+
+import matplotlib.pyplot as plt
+# plot显示图形
+stock_rise.cumsum().plot()
+# 需要调用show，才能显示出结果
+# plt.show()
+
+# apply自定义运算
+# apply(func, axis=0) func:自定义函数 axis=0:默认是列，axis=1为行进行运算
+# 定义一个对列，最大值-最小值的函数
+print(data[['high', 'close']].apply(lambda x: x.max() - x.min(), axis=0))
