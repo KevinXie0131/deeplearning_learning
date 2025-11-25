@@ -5,7 +5,15 @@ import numpy as np
 print(np.arange(15))
 print(type(np.arange(15)))
 arr1 = np.arange(15).reshape(3, 5)
+arr1[2][4] = 100
+arr1[2,3] = 99
 print(arr1)
+print(arr1[0:2, :])
+print(arr1[:, 1:3])
+
+# 类型修改
+arr1 = arr1.astype(np.float64) # 将数组的元素类型转换为 float64
+print(arr1.T) # 数组的转置
 
 # 1.2 演示numpy的常用属性
 print(f'numpy的轴: {arr1.ndim}')       # 2
@@ -56,7 +64,7 @@ print(arr6)
 print(type(arr6))
 
 # 4 ndarray的数据类型
-arr7 = np.zeros((3, 4), dtype=np.float64)
+arr7 = np.zeros((3, 4), dtype=np.float64) # np.ones(), np.zeros_like(ones)
 print(arr7)
 print(arr7.dtype)
 
@@ -109,3 +117,30 @@ print(np.multiply(arr10, arr11))
 # 矩阵点积
 arr12 = np.arange(10).reshape(5, 2)
 print(np.dot(arr10, arr12))
+
+# 逻辑运算
+score = np.random.randint(40, 100, (2, 3))
+score[score > 80] = 1
+print(score)
+
+#通用判断函数
+print(np.all(score[0:1, :] > 30)) # 如果所有元素都满足条件，返回 True，否则返回 False
+print(np.any(score[0:1, :] > 60)) # 如果有一个元素满足条件，返回 True，否则返回 False
+
+# 三元运算符
+temp = score[0:1, 0:2]
+print(np.where(temp > 60, 1, 0))
+# 复合逻辑需要结合np.logical_and和np.logical_or使用
+print(np.where(np.logical_and(temp > 60, temp < 90), 1, 0))
+print(np.where(np.logical_or(temp > 90, temp < 60), 1, 0))
+
+# 统计指标
+# axis = 0: 沿着每一列进行操作，意味着在每一列上进行统计计算。可以理解为“跨行操作”。
+# axis = 1: 沿着每一行进行操作，意味着在每一行上进行统计计算。可以理解为“跨列操作”。
+print(np.max(score, axis=0))
+print(np.min(score, axis=0))
+print(np.std(score, axis=0))
+print(np.mean(score, axis=0))
+
+print(np.argmax(score, axis=0)) # 最大元素对应的下标
+print(np.argmin(score, axis=1)) # 最小元素对应的下标
