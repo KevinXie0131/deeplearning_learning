@@ -195,10 +195,10 @@ df7['成绩排名'] = df7.成绩.rank(method='min', ascending=False)
 # print(df7)
 
 # 聚合函数
-print(df2['year'].min()) # min函数
-print(df2['year'].max()) # max函数
-print(df2['year'].mean()) # mean平均值
-print(df2['GDP'].mean())
+# print(df2['year'].min()) # min函数
+# print(df2['year'].max()) # max函数
+# print(df2['year'].mean()) # mean平均值
+# print(df2['GDP'].mean())
 
 # 缺失值处理
 # 电影数据的缺失值处理
@@ -222,6 +222,24 @@ row_with_null = movie.isnull().any(axis=1)
 
 # 替换缺失值
 # 替换存在缺失值的样本的两列, 替换填充平均值，中位数
-movie['Revenue (Millions)'].fillna(movie['Revenue (Millions)'].mean(), inplace=True)
-movie['Metascore'].fillna(movie['Metascore'].mean(), inplace=True)
+# movie['Revenue (Millions)'].fillna(movie['Revenue (Millions)'].mean(), inplace=True)
+# movie['Metascore'].fillna(movie['Metascore'].mean(), inplace=True)
 # print(movie[row_with_null])
+
+# 替换所有缺失值
+for column in movie.columns:
+    if np.all(pd.notnull(movie[column])) == False:
+        print(column)
+        movie[column].fillna(movie[column].mean(), inplace=True)
+# print(movie[row_with_null])
+
+# 不是缺失值nan，有默认标记的
+wis = pd.read_csv("https://archive.ics.uci.edu/ml/machine-learning-databases/breast-cancer-wisconsin/breast-cancer-wisconsin.data")
+# print(wis.shape)
+# 处理思路分析：
+# 1、先替换'?'为np.nan
+# df.replace(to_replace=, value=) # to_replace:替换前的值, value:替换后的值
+wis = wis.replace(to_replace='?', value=np.nan)# 把一些其它值标记的缺失值，替换成np.nan
+# 2、在进行缺失值的删除处理
+wis = wis.dropna()
+# print(wis.shape)
