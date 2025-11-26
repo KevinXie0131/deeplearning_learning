@@ -7,15 +7,16 @@ plt.rcParams['font.sans-serif'] = ['Microsoft YaHei']
 plt.rcParams['axes.unicode_minus'] = False
 
 # 1.创建画布
-plt.figure(figsize=(10, 10), dpi=100) # figsize:指定图的长宽, dpi:图像的清晰度, 返回fig对象
+# figsize:指定图的长宽, dpi:图像的清晰度, 返回fig对象
+plt.figure(figsize=(10, 10), dpi=100) # 参1: 画布大小(宽, 高)   参2: dpi(像素密度)
 # 2.绘制折线图
-plt.plot([1, 2, 3, 4, 5, 6 ,7], [17,17,18,15,11,11,13])
+plt.plot([1, 2, 3, 4, 5, 6 ,7], [17,17,18,15,11,11,13]) # 参数1: x轴数据   参数2: y轴数据
 # 3.显示图像
 plt.show()
 
 # 画出温度变化图
 # 0.准备x, y坐标的数据
-x = range(60)
+x = range(60) # 准备x轴(60分钟) 和 y轴(每分钟的温度) 的数据.
 y_temperature = [random.uniform(15, 28) for i in x]
 # 增加温度数据
 y_temperature1 = [random.uniform(1, 13) for i in x]
@@ -36,7 +37,7 @@ y_ticks_label = ["{}度".format(i) for i in range(40)]
 plt.xticks(x[::5], x_ticks_label[::5])
 plt.yticks(y_ticks[::5], y_ticks_label[::5])
 
-plt.grid(True, linestyle='--', alpha=0.5)  # 添加网格显示
+plt.grid(True, linestyle='--', alpha=0.5)  # 添加网格显示 # 参1: 网格线的样式 - / -- / -. / : 参2: 网格线的透明度
 plt.xlabel("时间") # 添加描述信息
 plt.ylabel("温度")
 plt.title("中午11点0分到12点之间的温度变化图示", fontsize=20)
@@ -91,11 +92,11 @@ axes[1].grid(True, linestyle="--", alpha=0.5)
 # plt.xlabel("时间")
 # plt.ylabel("温度")
 # plt.title("中午11点--12点某城市温度变化图", fontsize=20)
-axes[0].set_xlabel("时间")
-axes[0].set_ylabel("温度")
+axes[0].set_xlabel("时间", fontsize=12)
+axes[0].set_ylabel("温度", fontsize=12)
 axes[0].set_title("中午11点--12点某城市温度变化图", fontsize=20)
-axes[1].set_xlabel("时间")
-axes[1].set_ylabel("温度")
+axes[1].set_xlabel("时间", fontsize=12)
+axes[1].set_ylabel("温度", fontsize=12)
 axes[1].set_title("中午11点--12点某城市温度变化图", fontsize=20)
 
 # # 2.4 图像保存
@@ -124,8 +125,10 @@ plt.grid()
 plt.show()
 
 # 柱形图
-x = np.linspace(-10, 10, 20)
-y = np.sin(x)
+# x = np.linspace(-10, 10, 20)
+# y = np.sin(x)
+x = ['A', 'B', 'C', 'D']
+y = [10, 6, 15, 21]
 # 1.创建画布
 plt.figure(figsize=(20, 8), dpi=100)
 # 2.绘制函数图像
