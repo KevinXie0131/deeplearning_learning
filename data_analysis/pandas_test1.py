@@ -297,6 +297,8 @@ df13 = df.query('close in [33.83, 33.34]')
 # print(df.max(0))
 # print(df.var(0)) # 方差
 # print(df.std(0)) # 标准差
+print(df.median())
+print(df.high.median())
 # print(df.median()) # 中位数
 # print(df.idxmax(axis=0)) # 求出最大值的位置
 # print(df.idxmin(axis=0)) # 求出最小值的位置
