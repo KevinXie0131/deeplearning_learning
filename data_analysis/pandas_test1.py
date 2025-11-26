@@ -47,6 +47,9 @@ print(s6['D'])  # 3
 s6['D'] = 99
 print(s6)
 
+print(pd.Series(['a', 'b', 'c']).str.cat(['A', 'B', 'C']))
+print(pd.Series(['a', 'b', 'c']).str.cat(['A', 'B', 'C'], sep=','))
+
 # 3. DataFrame对象入门
 # DataFrame是一个类似于二维数组或表格(如excel)的对象，既有行索引，又有列索引
 # 行索引，表明不同行，横向索引，叫index，0轴，axis=0
