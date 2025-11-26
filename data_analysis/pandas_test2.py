@@ -7,6 +7,7 @@ import pandas as pd
 # 举例：读取之前的股票的数据 - 读取文件,并且指定只获取'open', 'close'指标
 data = pd.read_csv("./data/stock_day.csv", usecols=['open', 'close'])
 # print(data)
+data[['open', 'close']]
 
 data1 = pd.read_csv('./data/stock_day.csv', sep=',', index_col=[0])
 # print(data1)
@@ -172,6 +173,9 @@ df2 = df.tail(15) # 倒数15行
 # print(df2.sort_values(['GDP'], ascending=False)) # 倒序， ascending默认为True
 # 先对year年份进行由小到大排序，再对GDP由小到大排序
 # print(df2.sort_values(['year', 'GDP']))
+# 排序.
+print(df2.sort_values(['year', 'GDP']).head(1))        # 最便宜的.
+print(df2.sort_values(['year', 'GDP']).tail(1))        # 最贵的.
 
 # rank函数
 df2.rank()
@@ -194,12 +198,17 @@ df7['成绩排名'] = df7.成绩.rank(method='min', ascending=False)
 # df7['成绩排名'] = df7.成绩.rank(method='dense', ascending=False)
 # print(df7)
 
-# 聚合函数
+# 聚合函数=
 # print(df2['year'].min()) # min函数
 # print(df2['year'].max()) # max函数
 # print(df2['year'].mean()) # mean平均值
 # print(df2['GDP'].mean())
-
+# 筛选
+print('=========================')
+print(df2[df2['GDP'] == df2['GDP'].max()])
+# 最大 或者 最小的 n个
+print(df2.nlargest(2, 'GDP'))   # 最大的n个, 参1: n个, 参2: 排序字段  可以理解为是: sort_values的简化版
+print(df2.nsmallest(2, 'GDP'))     # 最小的n个
 # 缺失值处理
 # 电影数据的缺失值处理
 movie = pd.read_csv("./data/movie.csv")

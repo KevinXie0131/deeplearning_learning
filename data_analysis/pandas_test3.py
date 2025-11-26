@@ -96,6 +96,13 @@ gs3 = df.groupby(['city', 'channel']).agg({
 gs4 = df.groupby(['city'])['revenue'].filter(lambda s: s.mean() > 240)
 print(gs4)
 
+df.groupby(['city']).revenue.count()
+df.groupby(['city'])['revenue'].count()
+df.groupby(['city']).agg({'revenue':'count'})
+
+df_temp = df.groupby(['city'], as_index=False).agg({'revenue':'count'})
+# 修改列名
+df_temp.columns = ['city', 'revenue_count']
 # 交叉表与透视表
 # 交叉表用于计算一列数据对于另外一列数据的分组个数(用于统计分组频率的特殊透视表)
 data = {
