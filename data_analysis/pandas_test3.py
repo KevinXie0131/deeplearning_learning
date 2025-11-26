@@ -43,11 +43,14 @@ result = pd.merge(left, right, how='outer', on=['key1', 'key2'])
 
 # 数据分组
 df = pd.read_csv('./data/uniqlo.csv')
+# agg -> Aggregate(聚合的意思)
+# 格式: df.groupby(['分组字段1', '分组字段2'...]).agg({'列名1':'聚合函数名', '列名2':'聚合函数名'...})
+
 # groupby分组聚合
 # df.groupby分组函数返回分组对象
 # 基于一列进行分组
 gs = df.groupby(['gender_group']) # 基于顾客性别分组
-print(gs)
+print(gs) #  # DataFrameGroupBy  -> DataFrame分组对象
 print(gs['city'])
 # 基于多列进行分组
 gs2 = df.groupby(['gender_group', 'city']) # 基于顾客性别、不同城市分组
@@ -61,6 +64,15 @@ gs2 = df.groupby(['gender_group', 'channel'])
 
 # 按分组依据获取其中一组
 # print(gs2.get_group(('Female', '线上')))
+
+# 分组 + 聚合(聚合字段只有1个) - 需求: 根据 城市 和 销售渠道分组, 计算: 销售金额.
+df.groupby(['city', 'channel']).agg({'revenue':'sum'})      # 通用版(掌握) 返回DataFrame对象
+
+# 分组 + 聚合(聚合字段有2个, 聚合操作相同) - 需求: 根据 城市 和 销售渠道分组, 计算: 销售金额, 订单数量 总和.
+df.groupby(['city', 'channel']).agg({'revenue':'sum', 'order':'sum'})
+
+# 分组 + 聚合(聚合字段有2个, 聚合操作不同) - 需求: 根据 城市 和 销售渠道分组, 分别计算: 销售金额的平均值, 成本的总和.
+df.groupby(['city', 'channel']).agg({'revenue': 'mean', 'unit_cost': 'sum'})
 
 # 分组聚合 - 分组后对多列分别使用不同的聚合函数
 # df.groupby(['列名1', '列名2']).agg({

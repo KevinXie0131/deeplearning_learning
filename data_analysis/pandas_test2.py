@@ -204,14 +204,16 @@ df7['成绩排名'] = df7.成绩.rank(method='min', ascending=False)
 # 电影数据的缺失值处理
 movie = pd.read_csv("./data/movie.csv")
 # 判断缺失值是否存在
-# print(pd.notnull(movie))
-# print(np.all(pd.notnull(movie)))
-# print(pd.isnull(movie))
+# print(pd.notnull(movie)) # 判断df对象的 每列的 每个值 是否不为空(非缺失值)
+# print(np.all(pd.notnull(movie))) # 判断某列是否是 包含缺失值的列. # 整列都是True -> 结果是True, 但凡有False -> 结果是False, 说明该列有缺失.
+# print(pd.isnull(movie)) # 判断df对象的 每列的 每个值 是否为空(缺失值)
 # print(np.any(pd.isnull(movie)))
 
 # 存在缺失值nan,并且是np.nan
-# 不修改原数据
-movie.dropna()
+# 删除缺失值
+movie.dropna() # 不会修改原数据, 加入 inplace=True 即可, 默认删: axis=0, 删行, axis=1, 删列.
+# movie.dropna(axis=0) # 删行
+# movie.dropna(axis=1) # 删列
 # 可以定义新的变量接受或者用原来的变量名
 data = movie.dropna()
 
@@ -219,6 +221,9 @@ data = movie.dropna()
 row_with_null = movie.isnull().any(axis=1)
 # print(row_with_null)
 # print(movie[row_with_null])
+
+# 填充固定值.
+# movie.fillna(23)
 
 # 替换缺失值
 # 替换存在缺失值的样本的两列, 替换填充平均值，中位数
@@ -228,6 +233,10 @@ row_with_null = movie.isnull().any(axis=1)
 
 # 替换所有缺失值
 for column in movie.columns:
+    # 判断某列是否有缺失值.
+    # movie_df[col_name]:  根据列名, 找到 df中的某个列 -> Series对象.
+    # pd.notnull(某列数据): 判断该列的每个值是否为非缺失值, True -> 不为空, False -> 为空(缺失值)
+    # np.all([True, False...]): 里边的值全部为True -> 结果为True, 只要有一个为False -> 结果为False.
     if np.all(pd.notnull(movie[column])) == False:
         print(column)
         movie[column].fillna(movie[column].mean(), inplace=True)
