@@ -15,7 +15,7 @@ df.groupby('province')['province'].count().sort_values(ascending=False).head(10)
 df['province'].value_counts().head(10)
 # 对上述结果进行可视化, 采用 Pandas自带的 绘图方式.
 df['province'].value_counts().head(10).plot()  # 折线图.
-plt.show()
+# plt.show()
 
 # 柱状图
 text_kwargs = dict(fontsize=15, figsize=(10, 6), color=['r', 'g', 'b', 'y', 'c', 'm', 'k', 'pink', 'gray', 'orange'])

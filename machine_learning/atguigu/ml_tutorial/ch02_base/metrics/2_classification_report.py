@@ -10,7 +10,10 @@ X, y = make_classification(n_samples=1000, n_features=20, n_classes=2, random_st
 
 # 2. 划分数据集
 X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.3,random_state=42)
-
+print(X_train.shape)
+print(y_train.shape)
+print(type(X_train))
+print(type(y_train))
 # 3. 定义一个分类模型（逻辑回归）
 model = LogisticRegression()
 
