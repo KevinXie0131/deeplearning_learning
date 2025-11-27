@@ -89,7 +89,7 @@ gs3 = df.groupby(['city', 'channel']).agg({
 
 # 分组过滤操作
 # df.groupby(['列名1',...]).filter(
-#     lambda x: dosomething returun True or False
+#     lambda x: do something return True or False
 # )
 # 按城市分组，查询每组销售金额平均值大于200的全部数据
 # gs4 = df.groupby(['city']).filter(lambda s: s['revenue'].mean() > 240)
